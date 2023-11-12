@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://kit.fontawesome.com/3c7f4f7d59.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="contact">
+      <div class="container">
+          <div class="row">
+              <div class="contact-left">
+                  <h1 class="sub-title">Contact Me</h1>
+                  <p><i class="fa-sharp fa-regular fa-paper-plane"></i>goodman1783@gmail.com</p>
+                  <p><i class="fa-sharp fa-solid fa-phone"></i>+2348034434277</p>
+                  <div class="social-icons">
+                      <a href="https://web.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                      <a href="https://www.linkedin.com/feed/"><i class="fa-brands fa-linkedin"></i></a>
+                      <a href="https://www.behance.net/MyPortfolios"><i class="fa-brands fa-behance"></i></a>
+                      <a href="https://twitter.com/home"><i class="fa-brands fa-x-twitter"></i></a>
+                  </div>
+                  <a href="images/Product Designer CV.jpg" download class="btn btn2">Access My CV</a>
+              </div>
+              <div class="contact-right">
+                  <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Name" required>
+                        <input type="text" name="Email" placeholder="Email" required>
+                        <textarea name="Message" rows="6" placeholder="Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                  </form>
+                  <span id="msg"></span>
+              </div>
+          </div>
+      </div>
+      <!------
+      <div class="copyright">
+          <p>Copyright @ Chuks <i class="fa-solid fa-heart"></i></p>
+      </div>   -->
+  </div>
+  
+  <script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+ 
+    function opentab(tabname){
+       for(tablink of tablinks){
+         tablink.classList.remove("active-link");
+       }
+       for(tabcontent of tabcontents){
+         tabcontent.classList.remove("active-tab");
+       }
+       event.currentTarget.classList.add("active-link");
+       document.getElementById(tabname).classList.add("active-tab");
+    }
+ 
+ </script>
+ 
+ <script>
+ 
+     var sidemeu = document.getElementById("sidemenu");
+ 
+     function openmenu(){
+          sidemeu.style.right = "0";
+     }
+     function closemenu(){
+          sidemeu.style.right = "-200px";
+     }
+ 
+ </script>
+ 
+ <script>
+ 
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbwptdBcyzQ1Qkmz749KbFoJNtSLYoewgb_pjtOM0gr3Xvi1Wg0_As-Z2Kmlk1ar83DP/exec'
+   const form = document.forms['submit-to-google-sheet']
+   const msg = document.getElementById("msg")
+ 
+   form.addEventListener('submit', e => {
+     e.preventDefault()
+     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+       .then(response => {
+         msg.innerHTML = "Message sent successfully"
+         setTimeout(function(){
+             msg.innerHTML = ""
+         },5000)
+         form.reset()
+       })
+       .catch(error => console.error('Error!', error.message))
+   })
+ 
+ </script>
+ 
+</body>
+</html>

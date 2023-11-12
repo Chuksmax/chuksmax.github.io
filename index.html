@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/3c7f4f7d59.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="header">
+  <div class="container">
+    <nav>
+      <img src="images/logo me.png" class="logo">
+      <ul id="sidemenu">
+          <li><a href="./">Home</a></li>
+          <li><a href="./about">About</a></li>
+          <li><a href="./services">Services</a></li>
+          <li><a href="./portfolio">Portfolio</a></li>
+          <li><a href="./contact">Contact</a></li>
+          <i class="fa-solid fa-x" onclick="closemenu()"></i>
+      </ul>
+      <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+    </nav>
+    <div class="header-text">
+        <p>Hello, It's me</p>
+        <h1>Boniface Chukwudi.</h1>
+        <p>And I'm a <span>UI/UX Designer</span></p>
+    </div>
+</div>
+</div>
+
+<script>
+
+   var tablinks = document.getElementsByClassName("tab-links");
+   var tabcontents = document.getElementsByClassName("tab-contents");
+
+   function opentab(tabname){
+      for(tablink of tablinks){
+        tablink.classList.remove("active-link");
+      }
+      for(tabcontent of tabcontents){
+        tabcontent.classList.remove("active-tab");
+      }
+      event.currentTarget.classList.add("active-link");
+      document.getElementById(tabname).classList.add("active-tab");
+   }
+
+</script>
+
+<script>
+
+    var sidemeu = document.getElementById("sidemenu");
+
+    function openmenu(){
+         sidemeu.style.right = "0";
+    }
+    function closemenu(){
+         sidemeu.style.right = "-200px";
+    }
+
+</script>
+
+<script>
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwptdBcyzQ1Qkmz749KbFoJNtSLYoewgb_pjtOM0gr3Xvi1Wg0_As-Z2Kmlk1ar83DP/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "Message sent successfully"
+        setTimeout(function(){
+            msg.innerHTML = ""
+        },5000)
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+
+</script>
+
+</body>
+</html>
